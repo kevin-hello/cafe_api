@@ -9,7 +9,7 @@ const morgan = require("morgan"),
 
 const Cafes = Models.Cafe;
 const Users = Models.User;
-const Areas = Models.Area;
+//const Areas = Models.Area;
 
 //input validator
 const { check, validationResult } = require("express-validator");
@@ -166,6 +166,50 @@ app.delete(
         res.status(200).send(req.params.Username + " was deleted.");
       }
     });
+  }
+);
+
+// add a cafe to user's favorites
+app.post(
+  "/users/:Username/cafes/:CafeID",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Users.findOneAndUpdate(
+      { Username: req.params.Username },
+      {
+        $push: { FavoriteCafes: req.params.CafeID },
+      },
+      { new: true }, // This line makes sure that the updated document is returned
+      (err, updatedUser) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send("Error: " + err);
+        } else {
+          res.json(updatedUser);
+        }
+      }
+    );
+  }
+);
+
+// remove a cafe from user's favorites
+app.delete(
+  "/users/:Username/cafes/:CafeID",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Users.findOneAndUpdate(
+      { Username: req.params.Username },
+      { $pull: { FavoriteCafes: req.params.CafeID } },
+      { new: true },
+      (err, updatedUser) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send("Error: " + err);
+        } else {
+          res.json(updatedUser);
+        }
+      }
+    );
   }
 );
 
