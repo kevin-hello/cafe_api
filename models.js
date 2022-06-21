@@ -38,7 +38,7 @@ userSchema.methods.validatePassword = function (password) {
   return bcrypt.compareSync(password, this.Password);
 };
 
-let Cafe = mongoose.model("Cafe", cafeeSchema);
+let Cafe = mongoose.model("Cafe", cafeSchema);
 let User = mongoose.model("User", userSchema);
 
 module.exports.Cafe = Cafe;
