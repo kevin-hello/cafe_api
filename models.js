@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 let cafeSchema = mongoose.Schema({
   Name: { type: String, required: true },
   Area: {
-    Name: String,
+    Name: { type: String, required: true },
     StreetAddress: String,
     City: String,
     ZipCode: String,

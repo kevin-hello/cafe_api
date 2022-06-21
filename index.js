@@ -9,7 +9,7 @@ const morgan = require("morgan"),
 
 const Cafes = Models.Cafe;
 const Users = Models.User;
-//const Areas = Models.Area;
+const Areas = Models.Area;
 
 //input validator
 const { check, validationResult } = require("express-validator");
@@ -67,7 +67,7 @@ app.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Cafes.find().then((cafes) => {
-      res.status(201).json(cafes);
+      res.status(200).json(cafes);
     });
   }
 );
