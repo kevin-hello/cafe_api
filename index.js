@@ -25,9 +25,11 @@ mongoose.connect(process.env.CONNECTION_URI, {
 //CORS
 const cors = require("cors");
 app.use(cors());
+
 app.use(morgan("common"));
 
 //body parser middleware
+
 app.use(express.json()); //for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/ x-www-form-urlencoded
 
@@ -46,13 +48,26 @@ app.get("/hello", (req, res) => {
   res.send("Welcome to my cafe API!");
 });
 
+//Get data about a single user by Username
+app.get(
+  "/users/:Username",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Users.findOne({ Username: req.params.Username })
+      .populate("FavoriteCafes")
+      .then((user) => {
+        res.json(user);
+      });
+  }
+);
+
 // Get a list of all cafes
 app.get(
   "/cafes",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Cafes.find().then((cafes) => {
-      res.status(200).json(cafes);
+      res.status(201).json(cafes);
     });
   }
 );
