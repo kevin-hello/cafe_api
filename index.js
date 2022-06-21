@@ -9,7 +9,7 @@ const morgan = require("morgan"),
 
 const Cafes = Models.Cafe;
 const Users = Models.User;
-//const Areas = Models.Area;
+const Areas = Models.Area;
 
 //input validator
 const { check, validationResult } = require("express-validator");
@@ -48,19 +48,6 @@ app.get("/hello", (req, res) => {
   res.send("Welcome to my cafe API!");
 });
 
-//Get data about a single user by Username
-app.get(
-  "/users/:Username",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    Users.findOne({ Username: req.params.Username })
-      .populate("FavoriteCafes")
-      .then((user) => {
-        res.json(user);
-      });
-  }
-);
-
 // Get a list of all cafes
 app.get(
   "/cafes",
@@ -80,6 +67,19 @@ app.get(
     Cafes.findOne({ Name: req.params.Name }).then((cafe) => {
       res.json(cafe);
     });
+  }
+);
+
+//Get data about a single user by Username
+app.get(
+  "/users/:Username",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Users.findOne({ Username: req.params.Username })
+      .populate("FavoriteCafes")
+      .then((user) => {
+        res.json(user);
+      });
   }
 );
 
