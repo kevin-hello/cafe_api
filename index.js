@@ -52,7 +52,7 @@ app.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Cafes.find().then((cafes) => {
-      res.status(201).json(cafes);
+      res.status(200).json(cafes);
     });
   }
 );
