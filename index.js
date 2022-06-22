@@ -28,7 +28,6 @@ const cors = require("cors");
 app.use(cors()); //allows all domains
 
 //body parser middleware
-
 app.use(express.json()); //for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/ x-www-form-urlencoded
 
@@ -48,6 +47,11 @@ app.get("/hello", (req, res) => {
 });
 
 // Get a list of all cafes
+/**
+ * this is the API endpoint for getting a list of ALL the cafes
+ * using the rest API via GET
+ * this requires a bearer token(jwt) to access the list
+ */
 app.get(
   "/cafes",
   passport.authenticate("jwt", { session: false }),
@@ -59,6 +63,12 @@ app.get(
 );
 
 // get data about a single cafe by cafe name
+/**
+ * this is the API endpoint for a specific cafe by name
+ * using the rest API via GET and
+ * @param Name
+ * The title will also be used within the URL after cafes
+ */
 app.get(
   "/cafes/:Name",
   passport.authenticate("jwt", { session: false }),
@@ -70,6 +80,11 @@ app.get(
 );
 
 //Get data about a single user by Username
+/**
+ * This API endpoint is used to get a user by username
+ * using the rest API via GET
+ * This requires the username to get the user data
+ */
 app.get(
   "/users/:Username",
   passport.authenticate("jwt", { session: false }),
@@ -83,14 +98,15 @@ app.get(
 );
 
 // register a new user
-/* JSON expected in this format:
-{
-  ID: Integer,
-  Username: String,
-  Password: String,
-  Email: String,
-  Birthday: Date
-}*/
+/**
+ * This API endpoint is used for posting new users
+ * using rest API via POST and
+ * @param Username
+ * @param Password
+ * @param Email
+ * @param Birthday
+ * If the data is sent correctly this will post a new user with the data used within the params
+ */
 app.post(
   "/users",
   //validation logic
@@ -131,16 +147,15 @@ app.post(
 );
 
 // Update a user's info, by username
-/* JSON expected in this format:
-{
-  Username: String,
-  (required)
-  Password: String,
-  (required)
-  Email: String,
-  (required)
-  Birthday: Date
-}*/
+/**
+ * This API endpoint is used for updating a user's data
+ * using rest API via PUT and
+ * @param Username
+ * @param Password
+ * @param Email
+ * @param Birthday
+ * If the data is sent correctly this will update a user's data with the data used within the params
+ */
 app.put(
   "/users/:Username",
   passport.authenticate("jwt", { session: false }),
@@ -169,6 +184,11 @@ app.put(
 );
 
 // Delete a user by username
+/**
+ * This is the API endpoint for deleting a user by username
+ * using the rest API via DELETE
+ * this requires the username for this to function!
+ */
 app.delete(
   "/users/:Username",
   passport.authenticate("jwt", { session: false }),
@@ -184,6 +204,12 @@ app.delete(
 );
 
 // add a cafe to user's favorites
+/**
+ * This is the API endpoint for adding a cafe to the list of favorites to the user
+ * using the rest API via POST
+ * This requires the username of the user from the database to function
+ * This also requires the cafe ID to be able to add the correct cafe to the favorites list
+ */
 app.post(
   "/users/:Username/cafes/:CafeID",
   passport.authenticate("jwt", { session: false }),
@@ -207,6 +233,12 @@ app.post(
 );
 
 // remove a cafe from user's favorites
+/**
+ * This API endpoint is to delete a favorite cafe from the list on users
+ * using the rest API via DELETE
+ * This requires the username of the user from the database to function
+ * This also requires the cafe ID to be able to remove the correct cafe from the favorites list
+ */
 app.delete(
   "/users/:Username/cafes/:CafeID",
   passport.authenticate("jwt", { session: false }),
