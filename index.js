@@ -67,7 +67,11 @@ app.get(
  * this is the API endpoint for a specific cafe by name
  * using the rest API via GET and
  * @param Name
- * The title will also be used within the URL after cafes
+ * The cafe name will also be used within the URL after "/cafes"
+ * if the cafe name has spaces in it, spaces will become "%20" in the URL
+ * Example:
+ * To search for "Maru Coffee"
+ * the end point would be: https://cafe-app-la.herokuapp.com/cafes/Maru%20Coffee
  */
 app.get(
   "/cafes/:Name",
