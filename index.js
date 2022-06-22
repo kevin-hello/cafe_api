@@ -1,20 +1,9 @@
-const express = require("express"),
-  bodyParser = require("body-parser"),
-  uuid = require("uuid");
-
-const morgan = require("morgan"),
-  app = express(),
-  mongoose = require("mongoose"),
-  Models = require("./models");
-
-const Cafes = Models.Cafe;
-const Users = Models.User;
-const Areas = Models.Area;
-
-//input validator
-const { check, validationResult } = require("express-validator");
-
-const { escapeRegExp, rest } = require("lodash");
+const express = require("express");
+const morgan = require("morgan");
+const bodyParser = require("body-parser");
+const uuid = require("uuid");
+const mongoose = require("mongoose");
+const Models = require("./models");
 
 //URI Connection
 mongoose.connect(process.env.CONNECTION_URI, {
@@ -22,11 +11,21 @@ mongoose.connect(process.env.CONNECTION_URI, {
   useUnifiedTopology: true,
 });
 
-//CORS
-const cors = require("cors");
-app.use(cors());
+//input validator
+const { check, validationResult } = require("express-validator");
+
+const Cafes = Models.Cafe;
+const Users = Models.User;
+app = express();
 
 app.use(morgan("common"));
+app.use(bodyParser.json());
+
+//const { escapeRegExp, rest } = require("lodash");
+
+//CORS
+const cors = require("cors");
+app.use(cors()); //allows all domains
 
 //body parser middleware
 
