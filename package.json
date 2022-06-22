@@ -1,7 +1,6 @@
 {
   "name": "cafe_api",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,23 +13,27 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevin-hello/cafe_api/issues"
+  },
   "homepage": "https://github.com/kevin-hello/cafe_api#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
-    "body-parser": "^1.20.0",
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
-    "express": "^4.18.1",
-    "express-validator": "^6.14.1",
+    "express": "^4.17.1",
+    "express-validator": "^6.13.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
-    "mongoose": "^6.3.8",
+    "mongoose": "^6.0.9",
     "morgan": "^1.10.0",
-    "passport": "^0.6.0",
+    "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "eslint": "^8.17.0"
-  }
+    "eslint": "^7.32.0"
+  },
+  "description": ""
 }
