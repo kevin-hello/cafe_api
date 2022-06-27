@@ -75,7 +75,7 @@ app.get(
   "/areas",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Areas.find().then((areas) => {
+    Cafes.find({}, "Area").then((areas) => {
       res.status(200).json(areas);
     });
   }
@@ -91,7 +91,7 @@ app.get(
   "/areas/:Name",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Areas.findOne({ Name: req.params.Name }).then((area) => {
+    Cafes.findOne({ "Area.Name": req.params.Name }).then((area) => {
       res.json(area);
     });
   }
