@@ -19,8 +19,9 @@ const Users = Models.User;
 const Areas = Models.Area;
 app = express();
 
-app.use(morgan("common"));
+//body parser middleware
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //const { escapeRegExp, rest } = require("lodash");
 
@@ -28,9 +29,10 @@ app.use(bodyParser.json());
 const cors = require("cors");
 app.use(cors()); //allows all domains
 
-//body parser middleware
+// calling express
 app.use(express.json()); //for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/ x-www-form-urlencoded
+app.use(morgan("common"));
 
 //imports auth.js file
 let auth = require("./auth")(app);
