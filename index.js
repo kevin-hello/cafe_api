@@ -91,7 +91,7 @@ app.get(
   "/areas/:Name",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Cafes.findOne({ "Cafe.Area.Name": req.params.Name }).then((areas) => {
+    Areas.findOne({ "Area.Name": req.params.Name }).then((areas) => {
       res.json(area.Area);
     });
   }
