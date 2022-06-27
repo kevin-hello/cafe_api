@@ -91,8 +91,8 @@ app.get(
   "/areas/:Name",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Areas.findOne({ "Area.Name": req.params.Name }).then((areas) => {
-      res.json(area.Area);
+    Areas.findOne({ Name: req.params.Name }).then((area) => {
+      res.json(area);
     });
   }
 );
