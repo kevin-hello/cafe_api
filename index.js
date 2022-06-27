@@ -16,6 +16,7 @@ const { check, validationResult } = require("express-validator");
 
 const Cafes = Models.Cafe;
 const Users = Models.User;
+const Areas = Models.Area;
 app = express();
 
 app.use(morgan("common"));
@@ -62,6 +63,37 @@ app.get(
   }
 );
 
+// Get a list of all cafe areas
+/**
+ * this is the API endpoint for getting a list of ALL the areas that have cafes
+ * using the rest API via GET
+ * this requires a bearer token(jwt) to access the list
+ */
+app.get(
+  "/areas",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Areas.find().then((areas) => {
+      res.status(201).json(areas);
+    });
+  }
+);
+
+// Get a data about a single area
+/**
+ * this is the API endpoint for a specific cafe by name
+ * using the rest API via GET and
+ * @param Name
+ */
+app.get(
+  "/areas",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Cafes.findOne({ "Cafe.Area.Name": req.params.Name }).then((areas) => {
+      res.json(area.Area);
+    });
+  }
+);
 // get data about a single cafe by cafe name
 /**
  * this is the API endpoint for a specific cafe by name
