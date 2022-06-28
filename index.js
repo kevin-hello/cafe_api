@@ -23,7 +23,7 @@ app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//const { escapeRegExp, rest } = require("lodash");
+const { escapeRegExp, rest } = require("lodash");
 
 //CORS
 const cors = require("cors");
