@@ -23,6 +23,11 @@ let cafeSchema = mongoose.Schema({
   Beans: Boolean,
 });
 
+let areaSchema = mongoose.Schema({
+  AreaName: { type: String, required: true },
+  AreaDescription: { type: String, required: true },
+});
+
 let userSchema = mongoose.Schema({
   Username: { type: String, required: true },
   Password: { type: String, required: true },
@@ -40,7 +45,9 @@ userSchema.methods.validatePassword = function (password) {
 };
 
 let Cafe = mongoose.model("Cafe", cafeSchema);
+let Area = mongoose.model("Area", areaSchema);
 let User = mongoose.model("User", userSchema);
 
 module.exports.Cafe = Cafe;
+module.exports.Area = Area;
 module.exports.User = User;
