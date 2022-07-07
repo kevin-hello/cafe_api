@@ -21,6 +21,7 @@ let cafeSchema = mongoose.Schema({
   TakeOutOnly: Boolean,
   Wifi: Boolean,
   Beans: Boolean,
+  Restroom: Boolean,
 });
 
 let areaSchema = mongoose.Schema({
