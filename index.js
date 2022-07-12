@@ -169,7 +169,7 @@ app.post(
       //searching to see if user with requested username already exists
       .then((user) => {
         if (user) {
-          return res.status(400).send(req.body.Username + "already exists");
+          return res.status(409).send(req.body.Username + "already exists");
         } else {
           Users.create({
             Username: req.body.Username,
