@@ -15,6 +15,7 @@ let cafeSchema = mongoose.Schema({
   Seating: String,
   Parking: String,
   Website: String,
+  Instagram: String,
   ImagePathExterior: String,
   ImagePathInterior: String,
   ImagePathMisc: String,
