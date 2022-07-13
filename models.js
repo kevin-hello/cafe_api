@@ -15,7 +15,6 @@ let cafeSchema = mongoose.Schema({
   Seating: String,
   Parking: String,
   Website: String,
-  Instagram: String,
   ImagePathExterior: String,
   ImagePathInterior: String,
   ImagePathMisc: String,
@@ -23,6 +22,7 @@ let cafeSchema = mongoose.Schema({
   Wifi: Boolean,
   Beans: Boolean,
   Restroom: Boolean,
+  Instagram: String,
 });
 
 let areaSchema = mongoose.Schema({
