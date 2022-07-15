@@ -121,16 +121,20 @@ app.get(
 /**
  * This API endpoint is used to get a user by username
  * using the rest API via GET
- * This requires the username to get the user data
+ * This requires the userID to get the user data
  */
 app.get(
   "/users/:UserID",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Users.findOne({ UserID: req.params.UserID })
-      .populate("FavoriteCafes")
+      // .populate("FavoriteCafes")
       .then((user) => {
         res.json(user);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send("error " + err);
       });
   }
 );
@@ -184,7 +188,7 @@ app.post(
   }
 );
 
-// Update a user's info, by username
+// Update a user's info, by userID
 /**
  * This API endpoint is used for updating a user's data
  * using rest API via PUT and
@@ -246,7 +250,7 @@ app.delete(
 /**
  * This is the API endpoint for adding a cafe to the list of favorites to the user
  * using the rest API via POST
- * This requires the username of the user from the database to function
+ * This requires the userID of the user from the database to function
  * This also requires the cafe ID to be able to add the correct cafe to the favorites list
  */
 app.post(
@@ -275,7 +279,7 @@ app.post(
 /**
  * This API endpoint is to delete a favorite cafe from the list on users
  * using the rest API via DELETE
- * This requires the username of the user from the database to function
+ * This requires the userID of the user from the database to function
  * This also requires the cafe ID to be able to remove the correct cafe from the favorites list
  */
 app.delete(

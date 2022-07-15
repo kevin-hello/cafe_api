@@ -132,7 +132,7 @@ app.get("/cafes/:Name", passport.authenticate("jwt", {
 /**
  * This API endpoint is used to get a user by username
  * using the rest API via GET
- * This requires the username to get the user data
+ * This requires the userID to get the user data
  */
 
 app.get("/users/:UserID", passport.authenticate("jwt", {
@@ -140,8 +140,12 @@ app.get("/users/:UserID", passport.authenticate("jwt", {
 }), function (req, res) {
   Users.findOne({
     UserID: req.params.UserID
-  }).populate("FavoriteCafes").then(function (user) {
+  }) // .populate("FavoriteCafes")
+  .then(function (user) {
     res.json(user);
+  })["catch"](function (err) {
+    console.error(err);
+    res.status(500).send("error " + err);
   });
 }); // register a new user
 
@@ -186,7 +190,7 @@ app.post("/users", //validation logic
       });
     }
   });
-}); // Update a user's info, by username
+}); // Update a user's info, by userID
 
 /**
  * This API endpoint is used for updating a user's data
@@ -247,7 +251,7 @@ app["delete"]("/users/:Username", passport.authenticate("jwt", {
 /**
  * This is the API endpoint for adding a cafe to the list of favorites to the user
  * using the rest API via POST
- * This requires the username of the user from the database to function
+ * This requires the userID of the user from the database to function
  * This also requires the cafe ID to be able to add the correct cafe to the favorites list
  */
 
@@ -276,7 +280,7 @@ app.post("/users/:UserID/cafes/:CafeID", passport.authenticate("jwt", {
 /**
  * This API endpoint is to delete a favorite cafe from the list on users
  * using the rest API via DELETE
- * This requires the username of the user from the database to function
+ * This requires the userID of the user from the database to function
  * This also requires the cafe ID to be able to remove the correct cafe from the favorites list
  */
 
