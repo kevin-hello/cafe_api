@@ -250,11 +250,11 @@ app.delete(
  * This also requires the cafe ID to be able to add the correct cafe to the favorites list
  */
 app.post(
-  "/users/:Username/cafes/:CafeID",
+  "/users/:UserID/cafes/:CafeID",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Users.findOneAndUpdate(
-      { Username: req.params.Username },
+      { UserID: req.params.UserID },
       {
         $push: { FavoriteCafes: req.params.CafeID },
       },
@@ -279,11 +279,11 @@ app.post(
  * This also requires the cafe ID to be able to remove the correct cafe from the favorites list
  */
 app.delete(
-  "/users/:Username/cafes/:CafeID",
+  "/users/:UserID/cafes/:CafeID",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Users.findOneAndUpdate(
-      { Username: req.params.Username },
+      { UserID: req.params.UserID },
       { $pull: { FavoriteCafes: req.params.CafeID } },
       { new: true },
       (err, updatedUser) => {
