@@ -124,10 +124,10 @@ app.get(
  * This requires the username to get the user data
  */
 app.get(
-  "/users/:Username",
+  "/users/:UserID",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Users.findOne({ Username: req.params.Username })
+    Users.findOne({ UserID: req.params.UserID })
       .populate("FavoriteCafes")
       .then((user) => {
         res.json(user);
@@ -195,12 +195,12 @@ app.post(
  * If the data is sent correctly this will update a user's data with the data used within the params
  */
 app.put(
-  "/users/:Username",
+  "/users/:UserID",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     let hashedPassword = Users.hashPassword(req.body.Password);
     Users.findOneAndUpdate(
-      { Username: req.params.Username },
+      { UserID: req.params.UserID },
       {
         $set: {
           Username: req.body.Username,
