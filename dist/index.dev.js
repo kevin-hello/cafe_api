@@ -127,10 +127,10 @@ app.get("/cafes/:Name", passport.authenticate("jwt", {
   }).then(function (cafe) {
     res.json(cafe);
   });
-}); //Get data about a single user by Username
+}); //Get data about a single user by User ID
 
 /**
- * This API endpoint is used to get a user by username
+ * This API endpoint is used to get a user by userID
  * using the rest API via GET
  * This requires the userID to get the user data
  */
@@ -226,12 +226,12 @@ app.put("/users/:UserID", passport.authenticate("jwt", {
       res.json(updatedUser);
     }
   });
-}); // Delete a user by username
+}); // Delete a user by userID
 
 /**
- * This is the API endpoint for deleting a user by username
+ * This is the API endpoint for deleting a user by userID
  * using the rest API via DELETE
- * this requires the username for this to function!
+ * this requires the userID for this to function!
  */
 
 app["delete"]("/users/:UserID", passport.authenticate("jwt", {
