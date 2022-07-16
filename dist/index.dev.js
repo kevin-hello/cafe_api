@@ -234,16 +234,16 @@ app.put("/users/:UserID", passport.authenticate("jwt", {
  * this requires the username for this to function!
  */
 
-app["delete"]("/users/:Username", passport.authenticate("jwt", {
+app["delete"]("/users/:UserID", passport.authenticate("jwt", {
   session: false
 }), function (req, res) {
   Users.findOneAndRemove({
-    Username: req.params.Username
+    UserID: req.params.UserID
   }).then(function (user) {
     if (!user) {
-      res.status(400).send(req.params.Username + " was not found");
+      res.status(400).send("user was not found");
     } else {
-      res.status(200).send(req.params.Username + " was deleted.");
+      res.status(200).send("user was deleted.");
     }
   });
 }); // add a cafe to user's favorites
