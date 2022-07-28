@@ -199,12 +199,12 @@ app.post(
  * If the data is sent correctly this will update a user's data with the data used within the params
  */
 app.put(
-  "/users/:UserID",
+  "/users/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     let hashedPassword = Users.hashPassword(req.body.Password);
-    Users.findOneAndUpdate(
-      { UserID: req.params.UserID },
+    Users.findByIdAndUpdate(
+      req.params.id,
       {
         $set: {
           Username: req.body.Username,
@@ -233,10 +233,10 @@ app.put(
  * this requires the userID for this to function!
  */
 app.delete(
-  "/users/:UserID",
+  "/users/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Users.findOneAndRemove({ UserID: req.params.UserID }).then((user) => {
+    Users.findByIdAndDelete(req.params.id).then((user) => {
       if (!user) {
         res.status(400).send("user was not found");
       } else {
@@ -254,11 +254,11 @@ app.delete(
  * This also requires the cafe ID to be able to add the correct cafe to the favorites list
  */
 app.post(
-  "/users/:UserID/cafes/:CafeID",
+  "/users/:id/cafes/:CafeID",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Users.findOneAndUpdate(
-      { UserID: req.params.UserID },
+    Users.findByIdAndUpdate(
+      req.params.id,
       {
         $push: { FavoriteCafes: req.params.CafeID },
       },
@@ -283,11 +283,11 @@ app.post(
  * This also requires the cafe ID to be able to remove the correct cafe from the favorites list
  */
 app.delete(
-  "/users/:UserID/cafes/:CafeID",
+  "/users/:id/cafes/:CafeID",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Users.findOneAndUpdate(
-      { UserID: req.params.UserID },
+    Users.findByIdAndUpdate(
+      req.params.id,
       { $pull: { FavoriteCafes: req.params.CafeID } },
       { new: true },
       (err, updatedUser) => {

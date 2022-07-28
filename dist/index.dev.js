@@ -200,13 +200,11 @@ app.post("/users", //validation logic
  * If the data is sent correctly this will update a user's data with the data used within the params
  */
 
-app.put("/users/:UserID", passport.authenticate("jwt", {
+app.put("/users/:id", passport.authenticate("jwt", {
   session: false
 }), function (req, res) {
   var hashedPassword = Users.hashPassword(req.body.Password);
-  Users.findOneAndUpdate({
-    UserID: req.params.UserID
-  }, {
+  Users.findByIdAndUpdate(req.params.id, {
     $set: {
       Username: req.body.Username,
       Password: hashedPassword,
@@ -232,12 +230,10 @@ app.put("/users/:UserID", passport.authenticate("jwt", {
  * this requires the userID for this to function!
  */
 
-app["delete"]("/users/:UserID", passport.authenticate("jwt", {
+app["delete"]("/users/:id", passport.authenticate("jwt", {
   session: false
 }), function (req, res) {
-  Users.findOneAndRemove({
-    UserID: req.params.UserID
-  }).then(function (user) {
+  Users.findByIdAndDelete(req.params.id).then(function (user) {
     if (!user) {
       res.status(400).send("user was not found");
     } else {
@@ -253,12 +249,10 @@ app["delete"]("/users/:UserID", passport.authenticate("jwt", {
  * This also requires the cafe ID to be able to add the correct cafe to the favorites list
  */
 
-app.post("/users/:UserID/cafes/:CafeID", passport.authenticate("jwt", {
+app.post("/users/:id/cafes/:CafeID", passport.authenticate("jwt", {
   session: false
 }), function (req, res) {
-  Users.findOneAndUpdate({
-    UserID: req.params.UserID
-  }, {
+  Users.findByIdAndUpdate(req.params.id, {
     $push: {
       FavoriteCafes: req.params.CafeID
     }
@@ -282,12 +276,10 @@ app.post("/users/:UserID/cafes/:CafeID", passport.authenticate("jwt", {
  * This also requires the cafe ID to be able to remove the correct cafe from the favorites list
  */
 
-app["delete"]("/users/:UserID/cafes/:CafeID", passport.authenticate("jwt", {
+app["delete"]("/users/:id/cafes/:CafeID", passport.authenticate("jwt", {
   session: false
 }), function (req, res) {
-  Users.findOneAndUpdate({
-    UserID: req.params.UserID
-  }, {
+  Users.findByIdAndUpdate(req.params.id, {
     $pull: {
       FavoriteCafes: req.params.CafeID
     }
