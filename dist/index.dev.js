@@ -135,12 +135,10 @@ app.get("/cafes/:Name", passport.authenticate("jwt", {
  * This requires the userID to get the user data
  */
 
-app.get("/users/:UserID", passport.authenticate("jwt", {
+app.get("/users/:id", passport.authenticate("jwt", {
   session: false
 }), function (req, res) {
-  Users.findOne({
-    UserID: req.params.UserID
-  }) // .populate("FavoriteCafes")
+  Users.findById(req.params.id) // .populate("FavoriteCafes")
   .then(function (user) {
     res.json(user);
   })["catch"](function (err) {
