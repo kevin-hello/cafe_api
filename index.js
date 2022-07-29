@@ -128,7 +128,7 @@ app.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Users.findById(req.params.id)
-      // .populate("FavoriteCafes")
+      .populate("FavoriteCafes")
       .then((user) => {
         res.json(user);
       })
