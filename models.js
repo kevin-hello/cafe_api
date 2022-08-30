@@ -27,6 +27,7 @@ let cafeSchema = mongoose.Schema({
   Instagram: String,
   Latitude: String,
   Longitude: String,
+  Location: String,
 });
 
 let areaSchema = mongoose.Schema({
