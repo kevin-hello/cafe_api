@@ -31,8 +31,8 @@ var cafeSchema = mongoose.Schema({
   Beans: Boolean,
   Restroom: Boolean,
   Instagram: String,
-  Latitude: mongoose.Types.Decimal128,
-  Longitude: mongoose.Types.Decimal128,
+  Latitude: String,
+  Longitude: String,
   Location: String
 });
 var areaSchema = mongoose.Schema({
