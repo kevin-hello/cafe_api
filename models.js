@@ -25,9 +25,8 @@ let cafeSchema = mongoose.Schema({
   Beans: Boolean,
   Restroom: Boolean,
   Instagram: String,
-  Latitude: String,
-  Longitude: String,
-  Location: String,
+  Latitude: Number,
+  Longitude: Number,
 });
 
 let areaSchema = mongoose.Schema({
