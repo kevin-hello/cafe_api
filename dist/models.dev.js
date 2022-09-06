@@ -14,9 +14,7 @@ var cafeSchema = mongoose.Schema({
     Description: String,
     StreetAddress: String,
     City: String,
-    ZipCode: String,
-    Latitude: String,
-    Longitude: String
+    ZipCode: String
   },
   Hours: String,
   Phone: String,
@@ -30,9 +28,7 @@ var cafeSchema = mongoose.Schema({
   Wifi: Boolean,
   Beans: Boolean,
   Restroom: Boolean,
-  Instagram: String,
-  Latitude: Number,
-  Longitude: Number
+  Instagram: String
 });
 var areaSchema = mongoose.Schema({
   AreaName: {
@@ -42,9 +38,7 @@ var areaSchema = mongoose.Schema({
   AreaDescription: {
     type: String,
     required: true
-  },
-  Latitude: String,
-  Longitude: String
+  }
 });
 var userSchema = mongoose.Schema({
   Username: {
