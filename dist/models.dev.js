@@ -28,7 +28,9 @@ var cafeSchema = mongoose.Schema({
   Wifi: Boolean,
   Beans: Boolean,
   Restroom: Boolean,
-  Instagram: String
+  Instagram: String,
+  Lat: Number,
+  Long: Number
 });
 var areaSchema = mongoose.Schema({
   AreaName: {

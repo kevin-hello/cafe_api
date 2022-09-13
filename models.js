@@ -23,6 +23,8 @@ let cafeSchema = mongoose.Schema({
   Beans: Boolean,
   Restroom: Boolean,
   Instagram: String,
+  Lat: Number,
+  Long: Number,
 });
 
 let areaSchema = mongoose.Schema({
