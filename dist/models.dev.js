@@ -14,7 +14,9 @@ var cafeSchema = mongoose.Schema({
     Description: String,
     StreetAddress: String,
     City: String,
-    ZipCode: String
+    ZipCode: String,
+    Lat: Number,
+    Long: Number
   },
   Hours: String,
   Phone: String,

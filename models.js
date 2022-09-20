@@ -9,6 +9,8 @@ let cafeSchema = mongoose.Schema({
     StreetAddress: String,
     City: String,
     ZipCode: String,
+    Lat: Number,
+    Long: Number,
   },
   Hours: String,
   Phone: String,
