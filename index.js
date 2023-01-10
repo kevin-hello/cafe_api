@@ -5,7 +5,7 @@ const uuid = require("uuid");
 const mongoose = require("mongoose");
 const Models = require("./models");
 
-//URI Connection
+//URI Connection MongoDB
 mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
