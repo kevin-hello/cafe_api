@@ -10,7 +10,7 @@ var uuid = require("uuid");
 
 var mongoose = require("mongoose");
 
-var Models = require("./models"); //URI Connection MongoDB (re-deploy)
+var Models = require("./models"); //URI Connection MongoDB
 
 
 mongoose.connect(process.env.CONNECTION_URI, {

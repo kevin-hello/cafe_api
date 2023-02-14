@@ -5,7 +5,7 @@ const uuid = require("uuid");
 const mongoose = require("mongoose");
 const Models = require("./models");
 
-//URI Connection MongoDB (re-deploy)
+//URI Connection MongoDB
 mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
